@@ -13,9 +13,9 @@ namespace Stock.API.Services
         {
             var factory = new ConnectionFactory
             {
-                HostName = "192.168.0.110",
-                UserName = "user_vendas",
-                Password = "senha_forte_aqui"
+                HostName = "192.168.0.110", // O IP do seu servidor onde o RabbitMQ está rodando
+                UserName = "user_vendas", // Usuário que você definiu no docker-compose.yml
+                Password = "senha_forte_aqui" // Senha que você definiu no docker-compose.yml
             };
 
             _connection = factory.CreateConnection();

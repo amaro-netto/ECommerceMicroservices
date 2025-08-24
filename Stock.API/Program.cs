@@ -1,11 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Stock.API.Data;
+using Stock.API.Services; // Adicione esta linha!
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<StockDbContext>(options =>
-    options.UseSqlServer(connectionString));
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -13,6 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<StockDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// Adicione esta linha:
 builder.Services.AddSingleton<IMessageBusService, MessageBusService>();
 
 var app = builder.Build();
